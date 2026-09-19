@@ -179,7 +179,7 @@ export const makeLayer = (connector: WebSocketConnector) =>
       })
 
       // A socket that keeps dying mid-exchange costs a retry every step; after enough consecutive
-      // losses the Session stays on HTTP, like Codex does once its stream retries are exhausted.
+      // losses the Session stays on HTTP.
       const streamFailure = Effect.fn("SessionModelTransport.streamFailure")(function* (owner: State) {
         owner.streamFailures++
         if (owner.streamFailures < MAX_STREAM_FAILURES) return
